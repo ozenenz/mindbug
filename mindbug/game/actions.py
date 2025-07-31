@@ -7,13 +7,15 @@ from .constants import ActionType, Player
 
 @dataclass
 class Action:
+    # Represents a game action that can be taken by a player
     action_type: ActionType
     player: Player
-    card: Optional[Card] = None
-    creature_index: Optional[int] = None
-    target_index: Optional[int] = None
+    card: Optional[Card] = None  # For PLAY_CREATURE actions
+    creature_index: Optional[int] = None  # For ATTACK actions
+    target_index: Optional[int] = None  # For CHOOSE_BLOCKER actions
 
     def __hash__(self):
+        # Required for using actions as dictionary keys
         return hash(
             (
                 self.action_type,
@@ -25,6 +27,7 @@ class Action:
         )
 
     def __eq__(self, other):
+        # Required for action comparison
         if not isinstance(other, Action):
             return False
         return (
@@ -36,6 +39,7 @@ class Action:
         )
 
     def __repr__(self):
+        # Human-readable representation for debugging
         parts = [f"Action({self.action_type.name}", f"player={self.player.name}"]
         if self.card:
             parts.append(f"card={self.card.name}")

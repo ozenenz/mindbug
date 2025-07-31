@@ -6,6 +6,7 @@ from .constants import Keyword, TriggerType
 
 @dataclass
 class Card:
+    # Represents a card with its base stats and abilities
     name: str
     power: int
     keywords: Set[Keyword] = field(default_factory=set)
@@ -13,6 +14,7 @@ class Card:
     ability_trigger: Optional[TriggerType] = None
 
     def __hash__(self):
+        # Cards are uniquely identified by name and power
         return hash((self.name, self.power))
 
     def __eq__(self, other):
@@ -22,8 +24,11 @@ class Card:
 
 
 class CardDefinitions:
+    # Static definitions for all 32 First Contact cards
+    
     @staticmethod
     def get_first_contact_cards() -> Dict[str, Card]:
+        # Returns dictionary of all unique cards in First Contact
         cards = {
             "Axolotl Healer": Card(
                 name="Axolotl Healer",
@@ -106,7 +111,7 @@ class CardDefinitions:
                 name="Gorillion",
                 power=10,
                 keywords=set(),
-                ability_text="",
+                ability_text="",  # Vanilla creature
                 ability_trigger=None,
             ),
             "Grave Robber": Card(
@@ -148,7 +153,7 @@ class CardDefinitions:
                 name="Luchataur",
                 power=9,
                 keywords={Keyword.FRENZY},
-                ability_text="",
+                ability_text="",  # Vanilla with keyword
                 ability_trigger=None,
             ),
             "Mysterious Mermaid": Card(
@@ -162,14 +167,14 @@ class CardDefinitions:
                 name="Plated Scorpion",
                 power=2,
                 keywords={Keyword.TOUGH, Keyword.POISONOUS},
-                ability_text="",
+                ability_text="",  # Vanilla with keywords
                 ability_trigger=None,
             ),
             "Rhino Turtle": Card(
                 name="Rhino Turtle",
                 power=8,
                 keywords={Keyword.FRENZY, Keyword.TOUGH},
-                ability_text="",
+                ability_text="",  # Vanilla with keywords
                 ability_trigger=None,
             ),
             "Shark Dog": Card(
@@ -211,7 +216,7 @@ class CardDefinitions:
                 name="Spider Owl",
                 power=3,
                 keywords={Keyword.SNEAKY, Keyword.POISONOUS},
-                ability_text="",
+                ability_text="",  # Vanilla with keywords
                 ability_trigger=None,
             ),
             "Strange Barrel": Card(
@@ -254,8 +259,11 @@ class CardDefinitions:
 
     @staticmethod
     def get_first_contact_deck() -> List[Card]:
+        # Builds a complete 48-card deck with correct quantities
         cards = CardDefinitions.get_first_contact_cards()
         deck = []
+        
+        # Double quantity cards (2 copies each)
         for name in [
             "Axolotl Healer",
             "Compost Dragon",
@@ -275,6 +283,8 @@ class CardDefinitions:
             "Tusked Extorter",
         ]:
             deck.extend([cards[name]] * 2)
+        
+        # Single quantity cards (1 copy each)
         for name in [
             "Bee Bear",
             "Brain Fly",
@@ -294,5 +304,7 @@ class CardDefinitions:
             "Urchin Hurler",
         ]:
             deck.append(cards[name])
+        
+        # Verify deck size
         assert len(deck) == 48, f"Deck should have 48 cards, but has {len(deck)}"
         return deck
