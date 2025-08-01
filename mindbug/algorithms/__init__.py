@@ -1,5 +1,6 @@
-# Deep CFR algorithm components
-from .deep_cfr import DeepCFR
-from .networks import DualBranchMindbugNetwork, MindbugStateEncoder
+"""Deep CFR algorithm components."""
 
-__all__ = ["DeepCFR", "DualBranchMindbugNetwork", "MindbugStateEncoder"]
+from .deep_cfr import DeepCFR
+from .networks import DualBranchNetwork, StateEncoder
+
+__all__ = ["DeepCFR", "DualBranchNetwork", "StateEncoder"]

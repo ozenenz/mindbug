@@ -1,5 +1,6 @@
-# Training and evaluation components
-from .evaluate import Evaluator
-from .train import train
+"""Training utilities for Deep CFR."""
 
-__all__ = ["train", "Evaluator"]
+from .evaluator import Evaluator
+from .trainer import Trainer, TrainingMonitor
+
+__all__ = ["Evaluator", "Trainer", "TrainingMonitor"]

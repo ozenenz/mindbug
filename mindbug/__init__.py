@@ -1,10 +1,8 @@
-# Mindbug First Contact - Deep CFR Implementation
+"""Mindbug Deep CFR - A state-of-the-art implementation."""
+
 __version__ = "1.0.0"
 
-# Core game components
-from .game import MindbugEngine, GameState, Player
-
-# Deep CFR algorithm
 from .algorithms import DeepCFR
+from .core import GameState, MindbugEngine, Player
 
-__all__ = ["MindbugEngine", "GameState", "Player", "DeepCFR"]
+__all__ = ["DeepCFR", "GameState", "MindbugEngine", "Player"]
